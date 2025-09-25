@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codemantra - App Development Course</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        header span {
+            color: #00ffcc;
+        }
+
+        /* Main Section */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .course-title {
+            font-size: 26px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+
+        /* Grid for video cards */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            border: none;
+        }
+
+        .video-title {
+            margin-top: 12px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #e0fffa;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <span>Codemantra</span>
+    </header>
+
+    <!-- Course Section -->
+    <div class="container">
+        <h2 class="course-title">📱 App Development Course – All Lectures</h2>
+
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <iframe src="https://drive.google.com/file/d/1qPgLaYjYf8CpvgCMLA5Shnl3N_Un4Bcb/preview"
+                    allow="autoplay"></iframe>
+                <div class="video-title">Lecture 1 - Introduction</div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <iframe src="https://drive.google.com/file/d/17tbRnOCufmT8Enz5sJ80eWwWhykT4Sug/preview"
+                    allow="autoplay"></iframe>
+                <div class="video-title">Lecture 2 - Basics</div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <iframe src="https://drive.google.com/file/d/1rWUO2cT_oKX5MgSk5osnU-VaOLnmW3jC/preview"
+                    allow="autoplay"></iframe>
+                <div class="video-title">Lecture 3 - Advanced Topics</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Codemantra | App Development Training
+    </footer>
+
+</body>
+
+</html>
