@@ -5,205 +5,190 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Codemantra - App Development Course</title>
   <style>
+    /* ==== Variables ==== */
     :root{
-      --bg1: #1f1c2c;
-      --bg2: #928dab;
-      --card: rgba(255,255,255,0.08);
-      --glass: rgba(255,255,255,0.06);
-      --accent: #00bcd4;
-      --muted: #dfeffd;
+      --bg1:#0f0c29;
+      --bg2:#302b63;
+      --accent:#00bcd4;
+      --card:rgba(255,255,255,0.06);
+      --glass:rgba(255,255,255,0.05);
+      --muted:rgba(255,255,255,0.75);
+      --hover-shadow:0 12px 28px rgba(0,0,0,0.6);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0;font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-
+    /* ==== Reset ==== */
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins', sans-serif;}
     body{
       min-height:100vh;
-      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
       color:#fff;
+      padding:28px;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding:28px;
     }
 
+    /* ==== Header ==== */
     header{
       max-width:1200px;
-      margin:0 auto 22px;
+      margin:0 auto 32px;
       display:flex;
       align-items:center;
       justify-content:space-between;
+      flex-wrap:wrap;
       gap:12px;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
     }
     .logo{
-      width:52px;height:52px;border-radius:10px;
+      width:60px;height:60px;border-radius:12px;
       background:linear-gradient(135deg,#00ffd5,#00bcd4);
       display:flex;align-items:center;justify-content:center;color:#042;
-      font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(0,0,0,0.45);
+      font-weight:800;font-size:20px;box-shadow:0 6px 20px rgba(0,0,0,0.45);
+      transition:transform .3s ease;
     }
-    .brand h1{font-size:20px; letter-spacing:1px;}
-    .brand p{font-size:12px;color:rgba(255,255,255,0.8);margin-top:3px}
+    .logo:hover{transform:rotate(12deg) scale(1.05);}
+    .brand h1{font-size:22px;letter-spacing:1px;}
+    .brand p{font-size:12px;color:rgba(255,255,255,0.8);margin-top:3px;}
 
-    /* Controls */
+    header div.right{color:var(--muted);font-size:13px;}
+
+    /* ==== Controls ==== */
     .controls{
       max-width:1200px;
-      margin: 10px auto 28px;
+      margin:0 auto 32px;
       display:flex;
       align-items:center;
-      gap:12px;
       justify-content:space-between;
       flex-wrap:wrap;
+      gap:12px;
     }
     .filters{
       display:flex;
-      gap:8px;
-      align-items:center;
+      gap:10px;
       flex-wrap:wrap;
+      align-items:center;
     }
     .filter-btn{
+      padding:8px 16px;
+      border-radius:12px;
       background:var(--glass);
-      padding:8px 12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
       cursor:pointer;
       font-weight:600;
       font-size:14px;
       color:var(--muted);
-      transition:all .18s ease;
+      transition:all .25s ease;
     }
     .filter-btn.active{
       background:linear-gradient(90deg, rgba(0,188,212,0.16), rgba(0,188,212,0.08));
       color:#eaffff;
-      box-shadow:0 6px 20px rgba(0,188,212,0.06);
+      box-shadow:0 6px 20px rgba(0,188,212,0.1);
       transform:translateY(-2px);
     }
 
     .search-wrap{
       display:flex;
-      gap:8px;
-      align-items:center;
-      min-width:260px;
       flex:1;
       justify-content:flex-end;
+      min-width:260px;
     }
     .search{
-      background:var(--glass);
-      border-radius:10px;
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,0.04);
       display:flex;
-      gap:8px;
       align-items:center;
+      gap:8px;
       width:100%;
       max-width:420px;
+      padding:8px 12px;
+      border-radius:12px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:all .3s ease;
     }
+    .search:hover{background:rgba(255,255,255,0.08);}
     .search input{
-      background:transparent;border:0;color:#fff;outline:none;font-size:14px;width:100%;
+      width:100%;
+      border:none;
+      background:transparent;
+      color:#fff;
+      outline:none;
+      font-size:14px;
     }
-    .search .hint{font-size:13px;color:rgba(255,255,255,0.6)}
+    .search .hint{font-size:13px;color:rgba(255,255,255,0.6);}
 
-    /* Container */
-    .container{
-      max-width:1200px;
-      margin:0 auto;
-    }
-
-    /* Grid */
+    /* ==== Video Grid ==== */
+    .container{max-width:1200px;margin:0 auto;}
     .video-grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(310px,1fr));
-      gap:20px;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:24px;
     }
 
     .card{
       background:var(--card);
-      border-radius:14px;
-      padding:12px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.45);
-      transition:transform .22s ease,box-shadow .22s ease;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,0.5);
       display:flex;
       flex-direction:column;
       gap:10px;
-      min-height:260px;
-      position:relative;
-      overflow:hidden;
+      min-height:280px;
+      transition:transform .3s ease,box-shadow .3s ease;
     }
-    .card:hover{ transform:translateY(-6px); box-shadow:0 14px 40px rgba(0,0,0,0.6); }
-
+    .card:hover{transform:translateY(-6px);box-shadow:var(--hover-shadow);}
     .video-wrap{
       width:100%;
-      border-radius:10px;
-      overflow:hidden;
+      min-height:180px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      min-height:170px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      overflow:hidden;
     }
-    .video-wrap iframe{
-      width:100%;
-      height:170px;
-      border:0;
-      display:block;
-    }
-
-    .title{
-      font-size:15px;
-      font-weight:600;
-      color:#e9ffff;
-    }
-    .meta{
-      font-size:13px;
-      color:rgba(255,255,255,0.75);
-    }
-
-    .tags{
-      margin-top:auto;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .tag{
-      font-size:12px;
-      padding:6px 8px;
-      border-radius:8px;
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.03);
-      color:rgba(255,255,255,0.85);
-      font-weight:600;
-    }
-    .tag.dart{ background: rgba(115,102,255,0.12); color:#e7e2ff; }
-    .tag.flutter{ background: rgba(0,188,212,0.12); color:#e8fcff; }
-    .tag.other{ background: rgba(255,193,7,0.08); color:#fff6d6; }
-
-    /* placeholder */
+    .video-wrap iframe{width:100%;height:180px;border:0;display:block;}
     .placeholder{
-      width:100%;
-      height:170px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap:8px;
-      color:rgba(255,255,255,0.85);
+      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:rgba(255,255,255,0.8);
     }
     .placeholder .dot{
-      width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-      font-size:22px;background:rgba(255,255,255,0.04);
+      width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.04);
+      display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;
     }
 
-    footer{ max-width:1200px;margin:28px auto 0;padding:18px;border-top:1px solid rgba(255,255,255,0.03); text-align:center;color:rgba(255,255,255,0.7); font-size:13px;border-radius:8px; }
-
-    /* responsive tweaks */
-    @media (max-width:520px){
-      header{flex-direction:column;align-items:flex-start;gap:8px}
-      .search-wrap{justify-content:flex-start;width:100%}
+    .title{font-size:16px;font-weight:600;color:#e9ffff;}
+    .meta{font-size:13px;color:rgba(255,255,255,0.65);}
+    .tags{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;}
+    .tag{
+      font-size:12px;font-weight:600;padding:5px 10px;
+      border-radius:10px;background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.03);
+      color:rgba(255,255,255,0.85);
+      transition:all .3s ease;
     }
+    .tag.dart{background: rgba(115,102,255,0.12); color:#e7e2ff;}
+    .tag.flutter{background: rgba(0,188,212,0.12); color:#e8fcff;}
+    .tag.other{background: rgba(255,193,7,0.08); color:#fff6d6;}
+
+    /* ==== Footer ==== */
+    footer{
+      max-width:1200px;
+      margin:40px auto 0;
+      text-align:center;
+      color:rgba(255,255,255,0.7);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,0.1);
+      padding:18px;
+      border-radius:10px;
+    }
+
+    /* ==== Responsive ==== */
+    @media(max-width:520px){
+      header{flex-direction:column;align-items:flex-start;}
+      .search-wrap{justify-content:flex-start;width:100%;}
+    }
+
   </style>
 </head>
 <body>
@@ -215,8 +200,7 @@
         <p>App Development Training — Full Course (36 videos)</p>
       </div>
     </div>
-
-    <div style="text-align:right;color:rgba(255,255,255,0.75);font-size:13px">© 2025 Codemantra</div>
+    <div class="right">© 2025 Codemantra</div>
   </header>
 
   <div class="controls container">
@@ -225,7 +209,6 @@
       <button class="filter-btn" data-filter="dart">Dart</button>
       <button class="filter-btn active" data-filter="flutter">🔵 Flutter</button>
     </div>
-
     <div class="search-wrap">
       <div class="search">
         <input id="searchInput" type="search" placeholder="Search video title..." aria-label="Search videos" />
@@ -243,8 +226,7 @@
   <footer>Codemantra | App Development Training — All 36 Lectures</footer>
 
   <script>
-    // Video data (title, drive preview src or null, tag)
-    const videos = [
+   const videos = [
       {id:1, title:"Difference between Native and Hybrid Apps (Part 1)", src:"https://drive.google.com/file/d/1RyNR8HoG7VhtoHxcGMZcfRpMSf7xxu52/preview", tag:"other"},
       {id:2, title:"Difference between Flutter and React Native (Part 2)", src:"https://drive.google.com/file/d/1uoXGJwJ9PY8kV8pbDbFwBb7JH0aOpyXH/preview", tag:"other"},
       {id:3, title:"Learn Dart | Part 1 | Introduction | Variables | Data Types", src:"https://drive.google.com/file/d/1XnQjQ1JQwOdwji-vcMIgpYDTfTjOa4tC/preview", tag:"dart"},
@@ -283,111 +265,90 @@
       {id:36, title:"How to Create Flutter Apk from VSCode | Sign Apk | Generate Apk", src:"https://drive.google.com/file/d/1YZrFNIKlbjn5rSXqr5VoDbRiAS5tXM3H/preview", tag:"flutter"}
     ];
 
+
     const grid = document.getElementById('grid');
     const searchInput = document.getElementById('searchInput');
     const filterButtons = document.querySelectorAll('.filter-btn');
 
-    // Create card HTML
     function createCard(v){
       const card = document.createElement('article');
-      card.className = 'card';
-      card.dataset.tag = v.tag;
-      card.dataset.title = v.title.toLowerCase();
+      card.className='card';
+      card.dataset.tag=v.tag;
+      card.dataset.title=v.title.toLowerCase();
 
-      const videoWrap = document.createElement('div');
-      videoWrap.className = 'video-wrap';
-
+      const videoWrap=document.createElement('div');
+      videoWrap.className='video-wrap';
       if(v.src){
-        const iframe = document.createElement('iframe');
-        iframe.src = v.src;
-        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-        iframe.loading = 'lazy';
-        iframe.referrerPolicy = 'no-referrer';
+        const iframe=document.createElement('iframe');
+        iframe.src=v.src;
+        iframe.allow='autoplay; encrypted-media; picture-in-picture';
+        iframe.loading='lazy';
+        iframe.referrerPolicy='no-referrer';
         videoWrap.appendChild(iframe);
       } else {
-        const ph = document.createElement('div');
-        ph.className = 'placeholder';
-        ph.innerHTML = '<div class="dot">▶</div><div style="font-weight:700">Coming soon</div><div style="font-size:13px;color:rgba(255,255,255,0.6)">Video will be available soon</div>';
+        const ph=document.createElement('div');
+        ph.className='placeholder';
+        ph.innerHTML='<div class="dot">▶</div><div style="font-weight:700">Coming soon</div><div style="font-size:13px;color:rgba(255,255,255,0.6)">Video will be available soon</div>';
         videoWrap.appendChild(ph);
       }
 
-      const title = document.createElement('div');
-      title.className = 'title';
-      title.textContent = `${v.id}. ${v.title}`;
-
-      const meta = document.createElement('div');
-      meta.className = 'meta';
-      meta.textContent = `${v.tag.toUpperCase()} • Lecture ${v.id}`;
-
-      const tags = document.createElement('div');
-      tags.className = 'tags';
-      const tagEl = document.createElement('div');
-      tagEl.className = `tag ${v.tag}`;
-      tagEl.textContent = v.tag.charAt(0).toUpperCase() + v.tag.slice(1);
+      const title=document.createElement('div');
+      title.className='title';
+      title.textContent=`${v.id}. ${v.title}`;
+      const meta=document.createElement('div');
+      meta.className='meta';
+      meta.textContent=`${v.tag.toUpperCase()} • Lecture ${v.id}`;
+      const tags=document.createElement('div');
+      tags.className='tags';
+      const tagEl=document.createElement('div');
+      tagEl.className=`tag ${v.tag}`;
+      tagEl.textContent=v.tag.charAt(0).toUpperCase()+v.tag.slice(1);
       tags.appendChild(tagEl);
 
-      card.appendChild(videoWrap);
-      card.appendChild(title);
-      card.appendChild(meta);
-      card.appendChild(tags);
-
+      card.append(videoWrap,title,meta,tags);
       return card;
     }
 
-    // Render all
     function renderList(list){
-      grid.innerHTML = '';
-      if(list.length === 0){
-        grid.innerHTML = '<div style="grid-column:1/-1;padding:28px;text-align:center;color:rgba(255,255,255,0.75);">No videos found.</div>';
-        return;
-      }
-      const frag = document.createDocumentFragment();
-      list.forEach(v => frag.appendChild(createCard(v)));
+      grid.innerHTML='';
+      if(list.length===0){grid.innerHTML='<div style="grid-column:1/-1;padding:28px;text-align:center;color:rgba(255,255,255,0.75);">No videos found.</div>';return;}
+      const frag=document.createDocumentFragment();
+      list.forEach(v=>frag.appendChild(createCard(v)));
       grid.appendChild(frag);
     }
 
-    // Initial render (default filter = flutter as requested)
-    function applyFilter(filter = 'flutter', q=''){
-      const ql = (q||'').trim().toLowerCase();
-      let list = videos.filter(v => {
-        if(filter !== 'all' && v.tag !== filter) return false;
-        if(ql && !v.title.toLowerCase().includes(ql)) return false;
+    function applyFilter(filter='flutter', q=''){
+      const ql=(q||'').trim().toLowerCase();
+      const list=videos.filter(v=>{
+        if(filter!=='all'&&v.tag!==filter) return false;
+        if(ql&&!v.title.toLowerCase().includes(ql)) return false;
         return true;
       });
       renderList(list);
     }
 
-    // hook up buttons
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
+    filterButtons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
         filterButtons.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        const f = btn.dataset.filter;
-        applyFilter(f, searchInput.value);
+        applyFilter(btn.dataset.filter,searchInput.value);
       });
     });
 
-    // search box
-    searchInput.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter'){
-        const active = document.querySelector('.filter-btn.active');
-        const f = active ? active.dataset.filter : 'all';
-        applyFilter(f, searchInput.value);
+    searchInput.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){
+        const active=document.querySelector('.filter-btn.active');
+        applyFilter(active?active.dataset.filter:'all',searchInput.value);
       }
     });
-
-    // live search suggestions (optional: filter on input)
-    searchInput.addEventListener('input', (e)=>{
-      const active = document.querySelector('.filter-btn.active');
-      const f = active ? active.dataset.filter : 'all';
-      applyFilter(f, searchInput.value);
+    searchInput.addEventListener('input',e=>{
+      const active=document.querySelector('.filter-btn.active');
+      applyFilter(active?active.dataset.filter:'all',searchInput.value);
     });
 
-    // initial load: default filter = flutter (because you chose 🔵 Flutter)
-    document.addEventListener('DOMContentLoaded', () => {
-      // mark flutter active (already in HTML), ensure JS state consistent
-      filterButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === 'flutter'));
-      applyFilter('flutter', '');
+    document.addEventListener('DOMContentLoaded',()=>{
+      filterButtons.forEach(b=>b.classList.toggle('active',b.dataset.filter==='flutter'));
+      applyFilter('flutter','');
     });
   </script>
 </body>
